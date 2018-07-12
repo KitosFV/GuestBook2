@@ -47,7 +47,7 @@ PRIMARY KEY (`id`)
     <table>
       <?php
 	    $result = mysqli_query($c,"SELECT * FROM messges");
-        while($res = mysql_fetch_assoc($result)){
+        while($res = mysqli_fetch_assoc($result)){
             echo "<tr><th>".$res['author']."</th><th>".$res['email']."</th></tr><tr><td>".$res['id']."</td><td>".$res['message']."</td></tr>";
         }
 		?>
