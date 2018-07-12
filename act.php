@@ -12,11 +12,11 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL)){
     $query="INSERT INTO messages (author,email,message) VALUES('$aut','$email','$res')";
     
     if(!mysqli_query($c,$query)){
-        echo "MySQL error";
+        echo "<p align=\"center\">MySQL error</p>";
     }else{
-        echo "<p align=\"center\">Response succesfuly added<\p>";
+        echo "<p align=\"center\">Response succesfuly added</p>";
     }
 }else{
-    echo "<p align=\"center\">Email error<\p>";
+    echo "<p align=\"center\">Email error</p>";
 }
 ?>
