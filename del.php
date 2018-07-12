@@ -9,4 +9,5 @@ $c = mysqli_connect($host, $user, $passwd, $name);
 $query = "DELETE FROM messages WHERE id = $id";
 
 mysqli_query($c,$query);
+
 ?>

@@ -1,12 +1,22 @@
 <?php
 $res = htmlspecialchars($_GET["res"]);
-$name = htmlspecialchars($_GET["name"]);
+$aut = htmlspecialchars($_GET["name"]);
 $email = htmlspecialchars($_GET["email"]);
 if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-  $toWrite = "<tr><th>".$name."</th><th>".$email."</th></tr><tr><td></td><td>".$res."</td></tr>";
-  $msg = fopen("./messages/".$name.".txt","w");
-  fwrite($msg,$toWrite);
-  fclose($msg);
+    $user = "pysm1t";
+    $host = "db4free.net/";
+    $passwd = "935afe2c";
+    $name = "guestbook";
+    $c = mysqli_connect($host, $user, $passwd, $name);
+    
+    $query="INSERT INTO messages (author,email,message) VALUES('$aut','$email','$res')";
+    
+    if(!mysqli_query($c,$query)){
+        echo "MySQL error";
+    }else{
+        echo "<p align=\"center\">Response succesfuly added<\p>";
+    }
+}else{
+    echo "<p align=\"center\">Email error<\p>";
 }
-echo "<p align=\"center\">Response succesfuly added<\\p>";
 ?>
