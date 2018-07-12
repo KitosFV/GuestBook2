@@ -5,7 +5,7 @@
     <H1 align="center">Guest book</H1>
     <?php      
       $user = "pysm1t";
-      $host = "db4free.net/";
+      $host = "db4free.net";
       $passwd = "935afe2c";
       $name = "guestbook";
       $c = mysqli_connect($host, $user, $passwd, $name);
@@ -46,9 +46,9 @@ PRIMARY KEY (`id`)
 		?>
     <table>
       <?php
-	    $result = mysqli_query($c,"SELECT * FROM messges");
-        while($res = mysqli_fetch_assoc($result)){
-            echo "<tr><th>".$res['author']."</th><th>".$res['email']."</th></tr><tr><td>".$res['id']."</td><td>".$res['message']."</td></tr>";
+	    $result = mysqli_query($c,"SELECT * FROM messages");
+        while($row = mysqli_fetch_assoc($result)){
+            echo "<tr><th>".$row['author']."</th><th>".$row['email']."</th></tr><tr><td>".$row['id']."</td><td>".$row['message']."</td></tr>";
         }
 		?>
     </table>
