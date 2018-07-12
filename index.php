@@ -4,9 +4,7 @@
   <body>
     <H1 align="center">Guest book</H1>
     <?php      
-      if(!is_dir('messages')){
-        mkdir('./messages',0777);
-      }
+      
       ?>
     <form action="act.php" methode="get">
       <fieldset>
@@ -17,14 +15,25 @@
       <input type="submit">
       </fieldset>
     </form>
+      <?php
+	    $ip = $_SERVER['REMOTE_ADDR'];
+        $sip = gethostbyname($_SERVER['SERVER_NAME']);
+        
+        if($ip == $sip){
+            echo "<p class=\"root\">Root access denide</p>";
+            echo '<form action="del.php" methode="get">
+                    <fieldset>
+                    <legend>Delete info:</legend>
+                    <p>Id: <input type="text" name="id"/></p>
+                    <input type="submit">
+                    </fieldset>
+                </form>';
+        }
+		?>
     <table>
       <?php
-	    $msgs = scandir("./messages/");
-        for($i=2;$i<count($msgs);$i++){
-          $file = fopen("./messages/".$msgs[$i],"r");
-          echo fread($file, filesize("./messages/".$msgs[$i]));
-          fclose($file);
-        }
+	    
+        
 		?>
     </table>
   </body>
