@@ -7,16 +7,16 @@
       include 'vars.php';
       $c = mysqli_connect($host, $user, $passwd, $name);
       
-      $query = "CREATE TABLE `messages` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`author` varchar(255) DEFAULT NULL,
-`email` varchar(255) DEFAULT NULL,
-`message` varchar(255) DEFAULT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8";
-      
-      mysqli_query($c, $query);
-      ?>
+      $status = mysqli_fetch_assoc(mysqli_query($c,"CHECK TABLE messages"));
+      if (($status['Msg_type'] == 'error') && ($status['Msg_text'] == "Table 'base.tablename' doesn't exist")){
+        $exists = false;
+      }else{
+        $exists = true;
+      }
+      if(!($exist)){
+          mysqli_query($c, $install);
+      }
+    ?>
     <form action="act.php" methode="get">
       <fieldset>
       <legend>Response info:</legend>
@@ -28,9 +28,8 @@ PRIMARY KEY (`id`)
     </form>
       <?php
 	    $ip = $_SERVER['REMOTE_ADDR'];
-        $sip = gethostbyname($_SERVER['SERVER_NAME']);
-        
-        if($ip == $sip){
+        $nip = explode('.',$ip);
+        if(($nip[0] == '127')||($nip[0] == '::1')){
             echo "<p class=\"root\">Root access denide</p>";
             echo '<form action="del.php" methode="get">
                     <fieldset>
