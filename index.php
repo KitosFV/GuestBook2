@@ -4,10 +4,7 @@
   <body>
     <H1 align="center">Guest book</H1>
     <?php      
-      $user = "pysm1t";
-      $host = "db4free.net";
-      $passwd = "935afe2c";
-      $name = "guestbook";
+      include 'vars.php';
       $c = mysqli_connect($host, $user, $passwd, $name);
       
       $query = "CREATE TABLE `messages` (
