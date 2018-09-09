@@ -6,16 +6,7 @@
     <?php      
       include 'vars.php';
       $c = mysqli_connect($host, $user, $passwd, $name);
-      
-      $status = mysqli_fetch_assoc(mysqli_query($c,"CHECK TABLE messages"));
-      if (($status['Msg_type'] == 'error') && ($status['Msg_text'] == "Table 'base.tablename' doesn't exist")){
-        $exists = false;
-      }else{
-        $exists = true;
-      }
-      if(!($exist)){
-          mysqli_query($c, $install);
-      }
+      mysqli_query($c, $install);
     ?>
     <form action="act.php" methode="get">
       <fieldset>
