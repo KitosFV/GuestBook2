@@ -30,7 +30,7 @@
 	    $ip = $_SERVER['REMOTE_ADDR'];
         $nip = explode('.',$ip);
         if(($nip[0] == '127')||($nip[0] == '::1')){
-            echo "<p class=\"root\">Root access denide</p>";
+            echo "<p class=\"root\">Root access permited</p>";
             echo '<form action="del.php" methode="get">
                     <fieldset>
                     <legend>Delete info:</legend>
